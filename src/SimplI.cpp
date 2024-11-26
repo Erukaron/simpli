@@ -99,7 +99,7 @@ namespace SimplI
         return false;
     }
 
-    bool add_value(String name, int64_t current, int64_t min, int64_t max, bool read_only, SimplI::callback_t callback = nullptr)
+    bool add_value(String name, int64_t current, int64_t min, int64_t max, bool read_only, SimplI::callback_t callback)
     {
         if (check_if_name_exists(name))
         {
@@ -117,7 +117,7 @@ namespace SimplI
         return result.second;
     }
 
-    bool add_float(String name, double current, double min, double max, bool read_only, SimplI::callback_t callback = nullptr)
+    bool add_float(String name, double current, double min, double max, bool read_only, SimplI::callback_t callback)
     {
         if (check_if_name_exists(name))
         {
@@ -135,7 +135,7 @@ namespace SimplI
         return result.second;
     }
 
-    bool add_string(String name, String current, bool read_only, int max_size = -1, SimplI::callback_t callback = nullptr)
+    bool add_string(String name, String current, bool read_only, int max_size, SimplI::callback_t callback)
     {
         if (check_if_name_exists(name))
         {
@@ -152,7 +152,7 @@ namespace SimplI
         return result.second;
     }
 
-    bool add_bool(String name, bool current, bool read_only, SimplI::callback_t callback = nullptr)
+    bool add_bool(String name, bool current, bool read_only, SimplI::callback_t callback)
     {
         if (check_if_name_exists(name))
         {
