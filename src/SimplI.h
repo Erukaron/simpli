@@ -1,6 +1,6 @@
 #pragma once
 
-#include <WString>
+#include <WString.h>
 #include <map>
 
 namespace SimplI
