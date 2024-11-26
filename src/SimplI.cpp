@@ -8,7 +8,7 @@ namespace
         int64_t min;
         int64_t max;
         bool read_only;
-        callback_t callback;
+        SimplI::callback_t callback;
     } value_t;
 
     typedef struct float_tt
@@ -17,7 +17,7 @@ namespace
         double min;
         double max;
         bool read_only;
-        callback_t callback;
+        SimplI::callback_t callback;
     } float_tt;
 
     typedef struct string_t
@@ -25,19 +25,19 @@ namespace
         String current;
         bool read_only;
         int max_size;
-        callback_t callback;
+        SimplI::callback_t callback;
     } string_t;
 
     typedef struct bool_t
     {
         bool current;
         bool read_only;
-        callback_t callback;
+        SimplI::callback_t callback;
     } bool_t;
 
     typedef struct action_t
     {
-        callback_t callback;
+        SimplI::callback_t callback;
     } action_t;
 
     std::map<String, value_t> values;
