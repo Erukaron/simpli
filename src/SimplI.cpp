@@ -1,4 +1,4 @@
-#include <SimplI.h>
+#include <simpli.h>
 
 namespace
 {
@@ -10,7 +10,7 @@ namespace
         int64_t max;
         bool read_only;
         bool write_only; // for passwords
-        SimplI::callback_t callback;
+        simpli::callback_t callback;
     } value_t;
 
     std::map<String, value_t> values;
@@ -23,7 +23,7 @@ namespace
         double min;
         double max;
         bool read_only;
-        SimplI::callback_t callback;
+        simpli::callback_t callback;
     } float_tt;
 
     std::map<String, float_tt> floats;
@@ -36,7 +36,7 @@ namespace
         bool read_only;
         bool write_only; // for passwords
         int max_size;
-        SimplI::callback_t callback;
+        simpli::callback_t callback;
     } string_t;
 
     std::map<String, string_t> strings;
@@ -47,7 +47,7 @@ namespace
     {
         bool current;
         bool read_only;
-        SimplI::callback_t callback;
+        simpli::callback_t callback;
     } bool_t;
 
     std::map<String, bool_t> bools;
@@ -56,14 +56,14 @@ namespace
 #ifndef NO_SIMPLI_ACTION
     typedef struct action_t
     {
-        SimplI::callback_t callback;
+        simpli::callback_t callback;
     } action_t;
 
     std::map<String, action_t> actions;
 #endif
 }
 
-namespace SimplI
+namespace simpli
 {
     bool check_if_name_exists(String name)
     {

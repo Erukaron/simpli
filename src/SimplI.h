@@ -3,7 +3,7 @@
 #include <WString.h>
 #include <map>
 
-namespace SimplI
+namespace simpli
 {
     typedef void (*callback_t)(void);
 
