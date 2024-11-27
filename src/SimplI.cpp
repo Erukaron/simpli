@@ -2,7 +2,7 @@
 
 namespace
 {
-#ifdef SIMPLI_VALUE
+#ifndef NO_SIMPLI_VALUE
     typedef struct value_t
     {
         int64_t current;
@@ -15,7 +15,7 @@ namespace
     std::map<String, value_t> values;
 #endif
 
-#ifdef SIMPLI_FLOAT
+#ifndef NO_SIMPLI_FLOAT
     typedef struct float_tt
     {
         double current;
@@ -28,7 +28,7 @@ namespace
     std::map<String, float_tt> floats;
 #endif
 
-#ifdef SIMPLI_STRING
+#ifndef NO_SIMPLI_STRING
     typedef struct string_t
     {
         String current;
@@ -40,7 +40,7 @@ namespace
     std::map<String, string_t> strings;
 #endif
 
-#ifdef SIMPLI_BOOL
+#ifndef NO_SIMPLI_BOOL
     typedef struct bool_t
     {
         bool current;
@@ -51,7 +51,7 @@ namespace
     std::map<String, bool_t> bools;
 #endif
 
-#ifdef SIMPLI_ACTION
+#ifndef NO_SIMPLI_ACTION
     typedef struct action_t
     {
         SimplI::callback_t callback;
@@ -65,35 +65,35 @@ namespace SimplI
 {
     bool check_if_name_exists(String name)
     {
-#ifdef SIMPLI_VALUE
+#ifndef NO_SIMPLI_VALUE
         if (values.find(name) != values.end())
         {
             return true;
         }
 #endif        
 
-#ifdef SIMPLI_FLOAT
+#ifndef NO_SIMPLI_FLOAT
         if (floats.find(name) != floats.end())
         {
             return true;
         }
 #endif
 
-#ifdef SIMPLI_STRING
+#ifndef NO_SIMPLI_STRING
         if (strings.find(name) != strings.end())
         {
             return true;
         }
 #endif
 
-#ifdef SIMPLI_BOOL
+#ifndef NO_SIMPLI_BOOL
         if (bools.find(name) != bools.end())
         {
             return true;
         }
 #endif
 
-#ifdef SIMPLI_ACTION
+#ifndef NO_SIMPLI_ACTION
         if (actions.find(name) != actions.end())
         {
             return true;
@@ -103,7 +103,7 @@ namespace SimplI
         return false;
     }
 
-#ifdef SIMPLI_VALUE
+#ifndef NO_SIMPLI_VALUE
     int64_t get_value(String name)
     {
         return values[name].current;
@@ -128,7 +128,7 @@ namespace SimplI
     }
 #endif
 
-#ifdef SIMPLI_FLOAT
+#ifndef NO_SIMPLI_FLOAT
     double get_float(String name)
     {
         return floats[name].current;
@@ -153,7 +153,7 @@ namespace SimplI
     }
 #endif
 
-#ifdef SIMPLI_STRING
+#ifndef NO_SIMPLI_STRING
     String get_string(String name)
     {
         return strings[name].current;
@@ -177,7 +177,7 @@ namespace SimplI
     }
 #endif
 
-#ifdef SIMPLI_BOOL
+#ifndef NO_SIMPLI_BOOL
     bool get_bool(String name)
     {
         return bools[name].current;
@@ -200,7 +200,7 @@ namespace SimplI
     }
 #endif
 
-#ifdef SIMPLI_ACTION
+#ifndef NO_SIMPLI_ACTION
     bool add_action(String name, callback_t callback)
     {
         if (check_if_name_exists(name))
@@ -253,7 +253,7 @@ namespace SimplI
             answer.concat("\r\n");
             answer.concat("Available properties:\r\n");
 
-#ifdef SIMPLI_VALUE
+#ifndef NO_SIMPLI_VALUE
             for (auto const & property : values)
             {
                 answer.concat(property.first);
@@ -266,7 +266,7 @@ namespace SimplI
                 answer.concat(": value\r\n");
             }
 #endif
-#ifdef SIMPLI_FLOAT
+#ifndef NO_SIMPLI_FLOAT
             for (auto const & property : floats)
             {
                 answer.concat(property.first);
@@ -279,7 +279,7 @@ namespace SimplI
                 answer.concat(": float\r\n");
             }
 #endif
-#ifdef SIMPLI_STRING
+#ifndef NO_SIMPLI_STRING
             for (auto const & property : strings)
             {
                 answer.concat(property.first);
@@ -292,7 +292,7 @@ namespace SimplI
                 answer.concat(": string\r\n");
             }
 #endif
-#ifdef SIMPLI_BOOL
+#ifndef NO_SIMPLI_BOOL
             for (auto const & property : bools)
             {
                 answer.concat(property.first);
@@ -305,7 +305,7 @@ namespace SimplI
                 answer.concat(": bool\r\n");
             }
 #endif
-#ifdef SIMPLI_ACTION
+#ifndef NO_SIMPLI_ACTION
             for (auto const & property : actions)
             {
                 answer.concat(property.first);
@@ -316,7 +316,7 @@ namespace SimplI
             return answer;
         }
 
-#ifdef SIMPLI_VALUE
+#ifndef NO_SIMPLI_VALUE
         if (values.find(name) != values.end())
         {
             auto & item = values[name];
@@ -358,7 +358,7 @@ namespace SimplI
         }
 #endif
 
-#ifdef SIMPLI_FLOAT
+#ifndef NO_SIMPLI_FLOAT
         if (floats.find(name) != floats.end())
         {
             auto & item = floats[name];
@@ -400,7 +400,7 @@ namespace SimplI
         }
 #endif
 
-#ifdef SIMPLI_STRING
+#ifndef NO_SIMPLI_STRING
         if (strings.find(name) != strings.end())
         {
             auto & item = strings[name];
@@ -440,7 +440,7 @@ namespace SimplI
         }
 #endif
 
-#ifdef SIMPLI_BOOL
+#ifndef NO_SIMPLI_BOOL
         if (bools.find(name) != bools.end())
         {
             auto & item = bools[name];
@@ -483,7 +483,7 @@ namespace SimplI
         }
 #endif
 
-#ifdef SIMPLI_ACTION
+#ifndef NO_SIMPLI_ACTION
         if (actions.find(name) != actions.end())
         {
             auto & item = actions[name];
