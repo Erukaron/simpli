@@ -99,7 +99,7 @@ namespace SimplI
         return false;
     }
 
-    bool add_value(String name, int64_t current, int64_t min, int64_t max, bool read_only, SimplI::callback_t callback)
+    bool add_value(String name, int64_t current, int64_t min, int64_t max, bool read_only, callback_t callback)
     {
         if (check_if_name_exists(name))
         {
@@ -117,7 +117,7 @@ namespace SimplI
         return result.second;
     }
 
-    bool add_float(String name, double current, double min, double max, bool read_only, SimplI::callback_t callback)
+    bool add_float(String name, double current, double min, double max, bool read_only, callback_t callback)
     {
         if (check_if_name_exists(name))
         {
@@ -135,7 +135,7 @@ namespace SimplI
         return result.second;
     }
 
-    bool add_string(String name, String current, bool read_only, int max_size, SimplI::callback_t callback)
+    bool add_string(String name, String current, bool read_only, int max_size, callback_t callback)
     {
         if (check_if_name_exists(name))
         {
@@ -152,7 +152,7 @@ namespace SimplI
         return result.second;
     }
 
-    bool add_bool(String name, bool current, bool read_only, SimplI::callback_t callback)
+    bool add_bool(String name, bool current, bool read_only, callback_t callback)
     {
         if (check_if_name_exists(name))
         {
@@ -168,7 +168,7 @@ namespace SimplI
         return result.second;
     }
 
-    bool add_action(String name, SimplI::callback_t callback)
+    bool add_action(String name, callback_t callback)
     {
         if (check_if_name_exists(name))
         {
@@ -404,18 +404,18 @@ namespace SimplI
             else
             {
                 bool value;
-                if ((value_string == "on") || (value_string == "ON") || (value_string == "1") || (value_string == "true") || (value_string == "TRUE"))
+                if (value_string.equalsIgnoreCase("on") || (value_string == "1") || value_string.equalsIgnoreCase("true") || value_string.equalsIgnoreCase("yes"))
                 {
                     value = true;
                 }
-                else if ((value_string == "off") || (value_string == "OFF") || (value_string == "0") || (value_string == "false") || (value_string == "FALSE"))
+                else if (value_string.equalsIgnoreCase("off") || (value_string == "0") || value_string.equalsIgnoreCase("false") || value_string.equalsIgnoreCase("no"))
                 {
                     value = false;
                 }
                 else
                 {
                     answer.concat(value_string);
-                    answer.concat(" is invalid. Valid options: ON|OFF|on|off|1|0|true|false|TRUE|FALSE.");
+                    answer.concat(" is invalid. Valid options: on|off|1|0|true|false|yes|no.");
                     return answer;
                 }
                 
