@@ -9,7 +9,7 @@ namespace SimplI
 
 #ifndef NO_SIMPLI_VALUE
     int64_t get_value(String name);
-    bool add_value(String name, int64_t current, int64_t min, int64_t max, bool read_only, callback_t callback = nullptr);
+    bool add_value(String name, int64_t current, int64_t min, int64_t max, bool read_only = false, bool write_only = false, callback_t callback = nullptr);
 #endif
 
 #ifndef NO_SIMPLI_FLOAT
@@ -19,7 +19,7 @@ namespace SimplI
 
 #ifndef NO_SIMPLI_STRING
     String get_string(String name);
-    bool add_string(String name, String current, bool read_only, int max_size = -1, callback_t callback = nullptr);
+    bool add_string(String name, String current, bool read_only = false, bool write_only = false, int max_size = -1, callback_t callback = nullptr);
 #endif
 
 #ifndef NO_SIMPLI_BOOL

@@ -9,6 +9,7 @@ namespace
         int64_t min;
         int64_t max;
         bool read_only;
+        bool write_only; // for passwords
         SimplI::callback_t callback;
     } value_t;
 
@@ -33,6 +34,7 @@ namespace
     {
         String current;
         bool read_only;
+        bool write_only; // for passwords
         int max_size;
         SimplI::callback_t callback;
     } string_t;
@@ -109,7 +111,7 @@ namespace SimplI
         return values[name].current;
     }
 
-    bool add_value(String name, int64_t current, int64_t min, int64_t max, bool read_only, callback_t callback)
+    bool add_value(String name, int64_t current, int64_t min, int64_t max, bool read_only, bool write_only, callback_t callback)
     {
         if (check_if_name_exists(name))
         {
@@ -121,6 +123,7 @@ namespace SimplI
         item.min = min;
         item.max = max;
         item.read_only = read_only;
+        item.write_only = write_only;
         item.callback = callback;
 
         auto const result = values.try_emplace(name, item);
@@ -159,7 +162,7 @@ namespace SimplI
         return strings[name].current;
     }
 
-    bool add_string(String name, String current, bool read_only, int max_size, callback_t callback)
+    bool add_string(String name, String current, bool read_only, bool write_only, int max_size, callback_t callback)
     {
         if (check_if_name_exists(name))
         {
@@ -169,6 +172,7 @@ namespace SimplI
         string_t item;
         item.current = current;
         item.read_only = read_only;
+        item.write_only = write_only;
         item.max_size = max_size;
         item.callback = callback;
 
@@ -263,6 +267,11 @@ namespace SimplI
                     answer.concat(" [readonly]");
                 }
 
+                if (property.second.write_only)
+                {
+                    answer.concat(" [writeonly]");
+                }
+
                 answer.concat(": value\r\n");
             }
 #endif
@@ -287,6 +296,11 @@ namespace SimplI
                 if (property.second.read_only)
                 {
                     answer.concat(" [readonly]");
+                }
+
+                if (property.second.write_only)
+                {
+                    answer.concat(" [writeonly]");
                 }
 
                 answer.concat(": string\r\n");
@@ -323,7 +337,14 @@ namespace SimplI
 
             if (read)
             {
-                answer.concat(item.current);
+                if (!item.write_only)
+                {
+                    answer.concat(item.current);
+                }
+                else
+                {
+                    answer.concat("Property is write only.");    
+                }
             }
             else if (!read && item.read_only)
             {
@@ -407,7 +428,14 @@ namespace SimplI
 
             if (read)
             {
-                answer.concat(item.current);
+                if (!item.write_only)
+                {
+                    answer.concat(item.current);
+                }
+                else
+                {
+                    answer.concat("Property is write only.");    
+                }
             }
             else if (!read && item.read_only)
             {
