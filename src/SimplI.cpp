@@ -106,7 +106,7 @@ namespace simpli
     }
 
 #ifndef NO_SIMPLI_VALUE
-    int64_t get_value(String name)
+    int64_t & get_value(String name)
     {
         return values[name].current;
     }
@@ -132,7 +132,7 @@ namespace simpli
 #endif
 
 #ifndef NO_SIMPLI_FLOAT
-    double get_float(String name)
+    double & get_float(String name)
     {
         return floats[name].current;
     }
@@ -157,7 +157,7 @@ namespace simpli
 #endif
 
 #ifndef NO_SIMPLI_STRING
-    String get_string(String name)
+    String & get_string(String name)
     {
         return strings[name].current;
     }
@@ -182,7 +182,7 @@ namespace simpli
 #endif
 
 #ifndef NO_SIMPLI_BOOL
-    bool get_bool(String name)
+    bool & get_bool(String name)
     {
         return bools[name].current;
     }
