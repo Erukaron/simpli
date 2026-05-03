@@ -108,7 +108,13 @@ namespace simpli
 #ifndef NO_SIMPLI_VALUE
     int64_t & get_value(String name)
     {
-        return values[name].current;
+        auto it = values.find(name);
+        if (it == values.end())
+        {
+            static int64_t dummy = 0;
+            return dummy; // besser wäre ein Fehlerpfad statt Dummy
+        }
+        return it->second.current;
     }
 
     bool add_value(String name, int64_t current, int64_t min, int64_t max, bool read_only, bool write_only, callback_t callback)
@@ -134,7 +140,13 @@ namespace simpli
 #ifndef NO_SIMPLI_FLOAT
     double & get_float(String name)
     {
-        return floats[name].current;
+        auto it = floats.find(name);
+        if (it == floats.end())
+        {
+            static double dummy = 0;
+            return dummy; // besser wäre ein Fehlerpfad statt Dummy
+        }
+        return it->second.current;
     }
 
     bool add_float(String name, double current, double min, double max, bool read_only, callback_t callback)
@@ -159,7 +171,13 @@ namespace simpli
 #ifndef NO_SIMPLI_STRING
     String & get_string(String name)
     {
-        return strings[name].current;
+        auto it = strings.find(name);
+        if (it == strings.end())
+        {
+            static String dummy = "";
+            return dummy; // besser wäre ein Fehlerpfad statt Dummy
+        }
+        return it->second.current;
     }
 
     bool add_string(String name, String current, bool read_only, bool write_only, int max_size, callback_t callback)
@@ -184,7 +202,13 @@ namespace simpli
 #ifndef NO_SIMPLI_BOOL
     bool & get_bool(String name)
     {
-        return bools[name].current;
+        auto it = bools.find(name);
+        if (it == bools.end())
+        {
+            static bool dummy = false;
+            return dummy; // besser wäre ein Fehlerpfad statt Dummy
+        }
+        return it->second.current;
     }
 
     bool add_bool(String name, bool current, bool read_only, callback_t callback)
